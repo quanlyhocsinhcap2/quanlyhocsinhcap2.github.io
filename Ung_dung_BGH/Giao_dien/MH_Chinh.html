@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+  <div class="container-fluid">
+    <fieldset class="border m-2 p-2 text-info">
+      <legend class="text-danger">SẮP XẾP</legend>
+      <div class="container-fluid">
+        <button id="Th_Khoi_6" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 6
+        </button>
+        <button id="Th_Khoi_7" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 7
+        </button>
+        <button id="Th_Khoi_8" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 8
+        </button>
+        <button id="Th_Khoi_9" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 9
+        </button>
+        <select class="btn btn-outline-danger" id="Th_Loc_Lop">
+
+        </select>
+      </div>
+  </div>
+  </fieldset>
+  </div>
+  <div class="container-fluid">
+    <fieldset class="border m-2 p-2">
+      <legend id="Th_Tieu_de"></legend>
+      <div id="Th_Danh_sach"></div>
+      <div id="Th_bieu_do" style="width:100%; height:400px;"></div>
+    </fieldset>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="../Xu_ly/Xu_ly_3L.js"></script>
+  <script src="../Xu_ly/Xu_ly_Bieu_do.js"></script>
+  <script>
+    var Danh_sach_Hoc_sinh = Doc_Danh_sach_Hoc_sinh().Danh_sach_Hoc_sinh;
+
+    var Danh_sach_HS_Theo_lop;
+
+    Th_Khoi_6.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_6"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+
+
+    Th_Khoi_7.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_7"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+    Th_Khoi_8.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_8"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+    Th_Khoi_9.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_9"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+
+    function Tao_Bo_loc(Danh_sach_HS) {
+      Them_loc_Lop(Danh_sach_HS);
+      //Xuat_Danh_sach_Hoc_sinh(Danh_sach_HS, Th_Danh_sach);
+      Th_Loc_Lop.onchange();
+    }
+    Th_Khoi_6.click();
+
+    function deduplicate(arr) {
+      return arr.filter((value, index, arr) => arr.indexOf(value) === index);
+    }
+
+    function Them_loc_Lop(Danh_sach_Khoi) {
+      var Ds_Lop = [];
+      Danh_sach_Khoi.forEach(x => {
+        Ds_Lop.push(x.Lop.Ma_so)
+      });
+
+      let ans = deduplicate(Ds_Lop);
+
+      var text = "";
+      for (var i = 0; i < ans.length; i++) {
+        var number = ans[i].split(".");
+        var Ten_lop = ans[i].split("_");
+
+        if (parseInt(number[1]) == 1) {
+          text += `<option selected="selected" value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
+        }
+        else {
+
+          text += `<option value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
+        }
+      }
+      Th_Loc_Lop.innerHTML = text;
+    }
+    ///////////////////////////////////////////
+
+    var DS_HS_Theo_Lop;
+
+    Th_Loc_Lop.onchange = () => {
+      var lop = Th_Loc_Lop.value;
+      DS_HS_Theo_Lop = Danh_sach_HS_Theo_lop.filter(x => x.Lop.Ma_so == lop)
+      console.log(lop)
+      Th_Tieu_de.innerHTML = `DANH SÁCH HỌC SINH <span class="text-danger"> ${DS_HS_Theo_Lop[0].Lop.Ten.toUpperCase()} </span> - TỔNG SỐ HỌC SINH : <span class="text-danger"> ${DS_HS_Theo_Lop.length} </span> - ĐIỂM DANH NGÀY <span class="text-danger"> ${new Date().toLocaleDateString()} <input type="date" value="${getNewDate()}" id="Th_ngay"> </span>`
+
+      var dsDT = []
+      var du_Lieu = []
+
+      var nhap = {
+        name: 'Số lần nghỉ',
+        data: [],
+        color: 'green'
+      }
+
+      for (x in DS_HS_Theo_Lop) {
+        dsDT.push(DS_HS_Theo_Lop[x].Ho_ten)
+        nhap.data.push(DS_HS_Theo_Lop[x].Danh_sach_Vang.length)
+      }
+      du_Lieu.push(nhap)
+      Bieu_Do('Th_bieu_do', dsDT, du_Lieu)
+
+    }
+
+    Th_Loc_Lop.onchange();
+
+    var ds_Hs_Vang_Theo_Ngay = []
+
+    Th_ngay.onchange = ()=>{
+      console.log("ok")
+      DS_HS_Theo_Lop.forEach(x=>{
+        x.Danh_sach_Vang.forEach(y=>{
+          if(y!=null && y.Ngay == Th_ngay.value)
+          {
+            ds_Hs_Vang_Theo_Ngay.push(x)
+          }
+        })
+      })
+    }
+    ds_Hs_Vang_Theo_Ngay.forEach(x=>{
+      console.log(x)
+    })
+    console.log(ds_Hs_Vang_Theo_Ngay)
+    function getNewDate()
+    {
+      var d = new Date();
+      var thang = checkTime(d.getMonth()+1);
+      var ngay = checkTime(d.getDate());
+      var nam = d.getFullYear();
+      return `${nam}-${thang}-${ngay}`
+    }
+
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

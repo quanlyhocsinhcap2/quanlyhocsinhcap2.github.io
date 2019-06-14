@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<style>
+  .Da_Chon {
+    background-color: gray;
+    color: black;
+  }
+
+  .color_ten {
+    color: black !important;
+  }
+
+  .CHON {
+    border: 1px solid blue;
+    opacity: 0.5;
+  }
+
+  html {
+    overflow-y: unset;
+  }
+</style>
+
+<body>
+  <div class="container-fluid" id="Th_PET"></div>
+
+  <!-- <div class="container-fluid">
+      <div class="btn btn-outline-danger btn-block" id="Th_Thong_bao">
+        KHUNG THÔNG BÁO
+      </div>
+    </div> -->
+  <div class="container-fluid">
+    <fieldset class="border m-2 p-2 text-info">
+      <legend class="text-danger">SẮP XẾP</legend>
+
+      <div class="fixed-top text-right mr-2 mt-5" id="Th_HS_nghi">
+        <span class="text-white bg-danger btn border border-danger">
+          Tổng học sinh nghỉ :
+          <u id="Th_Gio_hang">0</u>
+        </span>
+      </div>
+
+      <!-- <button id="Th_Danh_sach_Chon" class="btn btn-outline-primary">Danh sách Chọn</button> -->
+
+      <!-- <button id="Th_Dia_diem" class="btn btn-danger">
+          <i class="fa fa-map-marker" aria-hidden="true"></i> Xem Địa chỉ Cửa
+          hàng
+        </button> -->
+      <!-- <a href="../Tap_tin_PDF/Don_Tuyen_dung.pdf" download id="Th_Tai_don" class="btn btn-danger"  ><i class="fa fa-download" aria-hidden="true"></i> Tải đơn</a> -->
+      <!-- <button id="Th_Tai_don" class="btn btn-danger">
+          <i class="fa fa-download" aria-hidden="true"></i> Tải đơn
+        </button>
+        <button id="Th_Nop_don" class="btn btn-danger">
+          <i class="fa fa-upload" aria-hidden="true"></i> Nộp đơn
+        </button> -->
+      <!-- <button id="Th_Lien_he" class="btn btn-primary" ><i class="fa fa fa-inbox" aria-hidden="true"></i> Liên hệ</button> -->
+      <!-- <a
+          href="../Giao_dien/MH_Lien_he.html"
+          id="Th_Lien_he"
+          class="btn btn-primary"
+          ><i class="fa fa fa-inbox" aria-hidden="true"></i> Liên hệ</a
+        >
+        <a
+          href="../Giao_dien/MH_Tin_nhan.html"
+          id="Th_Lien_he"
+          class="btn btn-primary"
+          ><i class="fa fa fa-inbox" aria-hidden="true"></i> Gửi SMS</a
+        >
+        <a
+          href="../Giao_dien/MH_FB_Thong_bao.html"
+          id="Th_FB_Thong_bao"
+          class="btn btn-primary"
+          ><i class="fa fa fa-inbox" aria-hidden="true"></i> Thông báo
+          Facebook</a
+        >
+        <hr /> -->
+      <div class="container-fluid">
+        <button id="Th_Khoi_6" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 6
+        </button>
+        <button id="Th_Khoi_7" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 7
+        </button>
+        <button id="Th_Khoi_8" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 8
+        </button>
+        <button id="Th_Khoi_9" class="btn btn-outline-primary">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i> Khối 9
+        </button>
+        <select class="btn btn-outline-danger" id="Th_Loc_Lop">
+
+        </select>
+        <button id="Th_sx_tang" class="btn btn-outline-primary">
+          <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+        </button>
+        <button id="Th_sx_giam" class="btn btn-outline-primary">
+          <i class="fa fa-sort-alpha-desc" aria-hidden="true"></i>
+        </button>
+
+        <!-- <select class="btn btn-outline-danger" id="Th_Sap_xep">
+                              <option value="0">-- Sắp xếp theo --</option>
+                              <option value="1">Sắp xếp theo Tên (A->Z)</option>
+                              <option value="2">Sắp xếp theo Tên (Z->A)</option>
+                            </select> -->
+        Nhập tên học sinh cần tìm:
+        <input type="text" id="Th_gtTim" onkeyup="KeyCode(event)" />
+        <button id="Th_Tim" class="btn btn-primary">
+          <i class="fa fa-search-plus"></i>
+        </button>
+        <div class="float">
+
+        </div>
+
+        <!-- <div class="text-right">
+            Chọn:
+            <select
+              class="btn btn-sm btn-outline-danger" >
+              <option value="Bệnh">Bệnh</option>
+              <option value="Trốn học">Trốn học </option>
+              <option value="Nhà có việc">Nhà có việc </option>
+              <option value="1">Khác </option>
+            </select>
+            (Sản phẩm) -->
+
+
+
+
+      </div>
+  </div>
+  </fieldset>
+  </div>
+  <div class="container-fluid">
+    <fieldset class="border m-2 p-2">
+      <legend id="Th_Tieu_de"></legend>
+      <div id="Th_Danh_sach"></div>
+    </fieldset>
+  </div>
+
+  <!-- modal Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg d-none" id="Th_Show" data-toggle="modal" data-target="#modelId">
+    Launch
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-danger" id="modelTitleId"></h4>
+          <button type="button" id="Th_Close" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+        <div class="modal-body" id="Th_Chi_tiet">
+          <div class="row" id="Th_Cha">
+            <div class="float-left">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Mã số</th>
+                    <th>Hình </th>
+                    <th>Họ tên </th>
+                    <th>Giới tính</th>
+                    <th>Lớp</th>
+                    <th>Lý do nghỉ</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="Th_Danh_sach_Dien_thoai_Mua">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="Th_dong">Close</button>
+          <button type="button" class="btn btn-primary" id="Th_Dong_y">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- end modal -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../Xu_ly/Xu_ly_3L.js"></script>
+  <script>
+    var Danh_sach_Hoc_sinh = Doc_Danh_sach_Hoc_sinh().Danh_sach_Hoc_sinh;
+    var Tong_Hs_Vang = 0;
+    if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
+      var ds = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
+      Tong_Hs_Vang = ds.length
+    }
+    var hs_vang = [];
+    Danh_sach_Hoc_sinh.forEach(x => {
+      if (x.Danh_sach_Vang.length != 0) {
+
+        x.Danh_sach_Vang.forEach(y => {
+          if (y != null) {
+            if (y.Ngay == getNewDate()) {
+              hs_vang.push(x.Ma_so)
+            }
+
+          }
+
+        })
+      }
+
+    })
+    let kq_Hs_Vang = deduplicate(hs_vang)
+    sessionStorage.setItem("Danh_sach_Da_Chon", JSON.stringify(kq_Hs_Vang))
+    Tong_Hs_Vang += kq_Hs_Vang.length
+
+    Th_Gio_hang.innerHTML = `<u>${Tong_Hs_Vang}</u>`
+
+    //console.log(Danh_sach_Hoc_sinh);
+    //   Xuat_Danh_sach_Hoc_sinh(Danh_sach_Hoc_sinh, Th_Danh_sach);
+    //   function Xuat_Danh_sach_Hoc_sinh() {
+    //     var Danh_sach_Khoi = Danh_sach_Hoc_sinh.filter(
+    //       x => x.Lop.Khoi.Ma_so == "KHOI_6"
+    //     );
+    //     //console.log(khoi);
+    //     console.log(Danh_sach_Khoi);
+    //     Xuat_Danh_sach_Hoc_sinh(Danh_sach_Khoi, Th_Danh_sach);
+    //   }
+
+    //   function Xuat_Danh_sach(Danh_sach_Hoc_sinh, Th_thong_bao) {
+    //     Th_Danh_sach.innerHTML = ""
+    //         Danh_sach_Hoc_sinh.forEach(Hoc_sinh => {
+    //             var The_hien = Tao_The_hien_Hoc_sinh(Hoc_sinh, Th_Danh_sach)
+    //             console.log(Hoc_sinh)
+    //         });
+    //         Th_Thong_bao.innerHTML = `<h3>Danh sách Học sinh (${Danh_sach_Hoc_sinh.length}) </h3>`
+    //     }
+    //     console.log(Danh_sach_Hoc_sinh)
+
+    var Danh_sach_HS_Theo_lop;
+
+    Th_Khoi_6.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_6"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+
+
+    Th_Khoi_7.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_7"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+    Th_Khoi_8.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_8"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+    Th_Khoi_9.onclick = () => {
+      Danh_sach_HS_Theo_lop = Danh_sach_Hoc_sinh.filter(
+        x => x.Lop.Khoi.Ma_so == "KHOI_9"
+      );
+      Tao_Bo_loc(Danh_sach_HS_Theo_lop)
+    };
+
+    function Tao_Bo_loc(Danh_sach_HS) {
+      Them_loc_Lop(Danh_sach_HS);
+      Xuat_Danh_sach_Hoc_sinh(Danh_sach_HS, Th_Danh_sach);
+      Th_Loc_Lop.onchange();
+    }
+    Th_Khoi_6.click();
+
+    //xóa trùng trong mảng
+    function deduplicate(arr) {
+      return arr.filter((value, index, arr) => arr.indexOf(value) === index);
+    }
+    ////////////////////////////////////
+
+    //add bộ lọc theo lớp
+    function Them_loc_Lop(Danh_sach_Khoi) {
+      var Ds_Lop = [];
+      Danh_sach_Khoi.forEach(x => {
+        Ds_Lop.push(x.Lop.Ma_so)
+      });
+
+      let ans = deduplicate(Ds_Lop);
+
+      var text = "";
+      for (var i = 0; i < ans.length; i++) {
+        var number = ans[i].split(".");
+        var Ten_lop = ans[i].split("_");
+
+        if (parseInt(number[1]) == 1) {
+          text += `<option selected="selected" value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
+        }
+        else {
+
+          text += `<option value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
+        }
+      }
+      Th_Loc_Lop.innerHTML = text;
+    }
+    ///////////////////////////////////////////
+
+    var DS_HS_Theo_Lop;
+
+    Th_Loc_Lop.onchange = () => {
+      var lop = Th_Loc_Lop.value;
+      DS_HS_Theo_Lop = Danh_sach_HS_Theo_lop.filter(x => x.Lop.Ma_so == lop)
+      console.log(lop)
+      Xuat_Danh_sach_Hoc_sinh(DS_HS_Theo_Lop, Th_Danh_sach)
+      Th_Tieu_de.innerHTML = `DANH SÁCH HỌC SINH <span class="text-danger"> ${DS_HS_Theo_Lop[0].Lop.Ten.toUpperCase()} </span> - TỔNG SỐ HỌC SINH : <span class="text-danger"> ${DS_HS_Theo_Lop.length} </span> - ĐIỂM DANH NGÀY <span class="text-danger"> ${new Date().toLocaleDateString()} </span>`
+    }
+
+    Th_Loc_Lop.onchange();
+
+    // Th_Sap_xep.onchange = () => {
+    //     var vt = Th_Sap_xep.value
+    //     //console.log(vt)
+    //     switch (parseInt(vt)) {
+    //         case 1:
+    //             Sap_Tang_theo_Ten()
+    //             break;
+    //         case 2:
+    //             Sap_Giam_theo_Ten()
+    //             break;
+    //     }
+    // }
+
+    Th_HS_nghi.onclick = () => {
+      if (sessionStorage.getItem("Danh_sach_Chon") != undefined || sessionStorage.getItem("Danh_sach_Da_Chon") != undefined) {
+        Th_Show.click();
+      }
+    }
+    function KeyCode(event) {
+      if (event.keyCode == 13) {
+        var gtTim = event.target.value
+        console.log(gtTim)
+        var Danh_sach_Tim = DS_HS_Theo_Lop.filter(x => x.Ho_ten.toLowerCase().includes(gtTim.toLowerCase()))
+        Xuat_Danh_sach_Hoc_sinh(Danh_sach_Tim, Th_Danh_sach)
+      }
+    }
+
+    Th_sx_tang.onclick = () => {
+      Sap_Tang_theo_Ten();
+    }
+    Th_sx_giam.onclick = () => {
+      Sap_Giam_theo_Ten();
+    }
+    function Sap_Tang_theo_Ten() {
+      // Là chuỗi
+      DS_HS_Theo_Lop.sort((a, b) => a.Ho_ten.localeCompare(b.Ho_ten))
+      Xuat_Danh_sach_Hoc_sinh(DS_HS_Theo_Lop, Th_Danh_sach)
+    }
+    function Sap_Giam_theo_Ten() {
+      // Là chuỗi
+      DS_HS_Theo_Lop.sort((a, b) => b.Ho_ten.localeCompare(a.Ho_ten))
+      Xuat_Danh_sach_Hoc_sinh(DS_HS_Theo_Lop, Th_Danh_sach)
+    }
+    var Danh_sach_Cap_nhat;
+    Th_Show.onclick = () => {
+
+
+      Danh_sach_Cap_nhat = []
+      Danh_sach_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
+      Danh_sach_Da_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Da_Chon"))
+
+      if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
+        Danh_sach_Chon.forEach(Hs => {
+          var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
+          Danh_sach_Cap_nhat.push(Hoc_sinh)
+        })
+      }
+      Danh_sach_Da_Chon.forEach(Hs => {
+        var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
+        Danh_sach_Cap_nhat.push(Hoc_sinh)
+      })
+
+      console.log(Danh_sach_Cap_nhat)
+      Xuat_Danh_sach_Hs_Nghi(Danh_sach_Cap_nhat, Th_Danh_sach_Dien_thoai_Mua)
+
+      function Xuat_Danh_sach_Hs_Nghi(Danh_sach_Hs_Nghi, Th_Cha) {
+        Th_Cha.innerHTML = ""
+        var noi_dung_HTML = ``
+        Danh_sach_Hs_Nghi.forEach(Hoc_sinh_Nghi => {
+          noi_dung_HTML += `
+                <tr>
+                    <td>${Hoc_sinh_Nghi.Ma_so}</td>
+                    <td scope="row">
+                        <img src=${Dia_chi_Media}/HS_1.png style="width:30px" />
+                    </td >
+                    <td>${Hoc_sinh_Nghi.Ho_ten}</td>
+                    <td>${Hoc_sinh_Nghi.Gioi_tinh}</td>
+                    <td>${Hoc_sinh_Nghi.Lop.Ten}</td>
+                    <td>
+                        <select
+              class="btn btn-sm btn-outline-danger" id="${Hoc_sinh_Nghi.Ma_so}">
+              <option value="Bệnh">Bệnh</option>
+              <option value="Trốn học">Trốn học </option>
+              <option value="Nhà có việc">Nhà có việc </option>
+              <option value="1">Khác </option>
+            </select>
+                    </td>
+                    
+                `
+          var flag = 0;
+          kq_Hs_Vang.forEach(y => {
+            console.log(y)
+            if (Hoc_sinh_Nghi.Ma_so == y) {
+              noi_dung_HTML += `
+                      
+                      <td>Đã lưu</td>`
+              flag++
+            }
+          })
+          if (flag == 0) {
+            noi_dung_HTML += `<td><button type="button" class="btn btn-primary">Xóa</button></td>`
+          }
+          console.log(kq_Hs_Vang)
+
+        })
+        Th_Cha.innerHTML = noi_dung_HTML
+
+      }
+    }
+    // Th_delete.onclick=()=>{
+    //   var Ma_Hs =  Th_delete.value
+    //   sessionStorage.getItem("Danh_sach_Chon")
+    // }
+
+    Th_Dong_y.onclick = () => {
+      var Ds_Dat = []
+      Danh_sach_Cap_nhat.forEach(Hoc_sinh => {
+        var HS_Vang = {
+          "Ngay": getNewDate(),
+          "Ly_do": `${document.getElementById(Hoc_sinh.Ma_so).value}`
+        }
+        var Hoc_sinh_Vang = {
+          "Hoc_sinh": Hoc_sinh,
+          "HS_Vang": HS_Vang
+        }
+        Ds_Dat.push(Hoc_sinh_Vang)
+      })
+      console.log(Ds_Dat)
+      var Kq = Ghi_Danh_sach_Vang(Ds_Dat)
+      var cap_nhat_ds = []
+      Danh_sach_Cap_nhat.forEach(Hoc_sinh => {
+        // let shadesEl = document.querySelector('.CHON');
+        // shadesEl.classList.remove('CHON');
+        cap_nhat_ds.push(Hoc_sinh.Ma_so)
+      })
+      //console.log(Kq)
+      sessionStorage.setItem("Danh_sach_Da_Chon", JSON.stringify(cap_nhat_ds))
+      sessionStorage.removeItem("Danh_sach_Chon")
+      //Th_Gio_hang.innerHTML = 0;
+      Th_dong.click()
+    }
+
+    function getNewDate()
+    {
+      var d = new Date();
+      var thang = checkTime(d.getMonth()+1);
+      console.log(thang)
+      var ngay = checkTime(d.getDate());
+      var nam = d.getFullYear();
+      return `${nam}-${thang}-${ngay}`
+    }
+
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+  </script>
+</body>
+
+</html>
