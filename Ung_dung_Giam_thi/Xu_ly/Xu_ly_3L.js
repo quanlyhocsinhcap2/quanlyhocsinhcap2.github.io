@@ -1,5 +1,5 @@
-var Dia_chi_Dich_vu = "http://localhost:1000"
-//var Dia_chi_Dich_vu = "https://dv-dulieu-quanlyhocsinh.herokuapp.com/"
+//var Dia_chi_Dich_vu = "http://localhost:1000"
+var Dia_chi_Dich_vu = "https://dv-dulieu-quanlyhocsinh.herokuapp.com/"
 var Dia_chi_Media = "https://dv-media-vietanh.herokuapp.com/"
 
 function Doc_Danh_sach_Hoc_sinh() {
