@@ -44,7 +44,7 @@
     <fieldset class="border m-2 p-2 text-info">
       <legend class="text-danger">SẮP XẾP</legend>
 
-      <div class="fixed-top text-right mr-2 mt-5" id="Th_HS_nghi">
+      <div class="fixed-top text-right mr-4 mt-2" id="Th_HS_nghi">
         <span class="text-white bg-danger btn border border-danger">
           Tổng học sinh nghỉ :
           <u id="Th_Gio_hang">0</u>
@@ -231,7 +231,10 @@
 
     })
     let kq_Hs_Vang = deduplicate(hs_vang)
-    sessionStorage.setItem("Danh_sach_Da_Chon", JSON.stringify(kq_Hs_Vang))
+    if(kq_Hs_Vang.length != 0)
+    {
+      sessionStorage.setItem("Danh_sach_Da_Chon", JSON.stringify(kq_Hs_Vang))
+    }
     Tong_Hs_Vang += kq_Hs_Vang.length
 
     Th_Gio_hang.innerHTML = `<u>${Tong_Hs_Vang}</u>`
@@ -289,7 +292,12 @@
     function Tao_Bo_loc(Danh_sach_HS) {
       Them_loc_Lop(Danh_sach_HS);
       Xuat_Danh_sach_Hoc_sinh(Danh_sach_HS, Th_Danh_sach);
-      Th_Loc_Lop.onchange();
+      try {
+        Th_Loc_Lop.onchange();
+      } catch (error) {
+        
+      }
+      
     }
     Th_Khoi_6.click();
 
@@ -394,10 +402,14 @@
           Danh_sach_Cap_nhat.push(Hoc_sinh)
         })
       }
-      Danh_sach_Da_Chon.forEach(Hs => {
+      if (sessionStorage.getItem("Danh_sach_Da_Chon") != undefined) {
+        Danh_sach_Da_Chon.forEach(Hs => {
         var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
         Danh_sach_Cap_nhat.push(Hoc_sinh)
       })
+      }
+
+      
 
       console.log(Danh_sach_Cap_nhat)
       Xuat_Danh_sach_Hs_Nghi(Danh_sach_Cap_nhat, Th_Danh_sach_Dien_thoai_Mua)
