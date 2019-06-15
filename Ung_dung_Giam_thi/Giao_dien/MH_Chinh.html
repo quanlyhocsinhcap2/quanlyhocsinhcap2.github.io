@@ -146,7 +146,6 @@
       <div id="Th_Danh_sach"></div>
     </fieldset>
   </div>
-
   <!-- modal Button trigger modal -->
   <button type="button" class="btn btn-primary btn-lg d-none" id="Th_Show" data-toggle="modal" data-target="#modelId">
     Launch
@@ -393,6 +392,7 @@
 
 
       Danh_sach_Cap_nhat = []
+      Danh_sach_Chon_Cap_Nhat = []
       Danh_sach_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
       Danh_sach_Da_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Da_Chon"))
 
@@ -400,6 +400,7 @@
         Danh_sach_Chon.forEach(Hs => {
           var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
           Danh_sach_Cap_nhat.push(Hoc_sinh)
+          Danh_sach_Chon_Cap_Nhat.push(Hoc_sinh)
         })
       }
       if (sessionStorage.getItem("Danh_sach_Da_Chon") != undefined) {
@@ -465,7 +466,7 @@
 
     Th_Dong_y.onclick = () => {
       var Ds_Dat = []
-      Danh_sach_Cap_nhat.forEach(Hoc_sinh => {
+      Danh_sach_Chon_Cap_Nhat.forEach(Hoc_sinh => {
         var HS_Vang = {
           "Ngay": getNewDate(),
           "Ly_do": `${document.getElementById(Hoc_sinh.Ma_so).value}`
@@ -478,6 +479,7 @@
       })
       console.log(Ds_Dat)
       var Kq = Ghi_Danh_sach_Vang(Ds_Dat)
+      console.log("--->"+Kq)
       var cap_nhat_ds = []
       Danh_sach_Cap_nhat.forEach(Hoc_sinh => {
         // let shadesEl = document.querySelector('.CHON');

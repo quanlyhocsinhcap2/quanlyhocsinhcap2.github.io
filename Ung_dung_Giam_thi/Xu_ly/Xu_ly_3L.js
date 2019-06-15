@@ -1,4 +1,5 @@
-var Dia_chi_Dich_vu = "https://dv-dulieu-quanlyhocsinh.herokuapp.com/"
+var Dia_chi_Dich_vu = "http://localhost:1000"
+//var Dia_chi_Dich_vu = "https://dv-dulieu-quanlyhocsinh.herokuapp.com/"
 var Dia_chi_Media = "https://dv-media-vietanh.herokuapp.com/"
 
 function Doc_Danh_sach_Hoc_sinh() {
@@ -92,3 +93,14 @@ function Xuat_Danh_sach_Hoc_sinh(Danh_sach, Th_Cha) {
     // Th_Thong_bao.innerHTML = `Tổng số học sinh: ${Danh_sach.length}`;
 }
 
+function Gui_email_Hoc_sinh_Vang(noi_dung) {
+    var Kq = ""
+    var Xu_ly_HTTP = new XMLHttpRequest()
+    var Tham_so = `Ma_so_Xu_ly=Thong_bao_Hoc_sinh_Vang_Email`
+    var Dia_chi_Xu_ly = `${Dia_chi_Dich_vu}?${Tham_so}`
+    Xu_ly_HTTP.open("POST", Dia_chi_Xu_ly, false)
+    var Chuoi_goi = noi_dung
+    Xu_ly_HTTP.send(Chuoi_goi)
+    Kq = Xu_ly_HTTP.responseText
+    return Kq
+}
