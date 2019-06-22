@@ -34,6 +34,7 @@
                 <select class="btn btn-outline-danger" id="Th_Loc_Lop">Thống kê từ
               
         </select> Thống kê từ <input type="date" id="Th_ngay"> đến <input type="date" id="Th_ngay2"> </span> <button type="button" id="Th_loc_ds" class="btn btn-primary"> Đồng ý </button>
+                <button type="button" class="btn btn-success" id="Th_showAll">Xem tất cả</button>
             </div>
 
     </div>
@@ -130,6 +131,7 @@
             Them_loc_Lop(Danh_sach_HS);
             try {
                 Th_Loc_Lop.onchange();
+                //Th_loc_ds.click();
             } catch (error) {
 
             }
@@ -187,15 +189,20 @@
                 nhap.data.push(DS_HS_Theo_Lop[x].Danh_sach_Vang.length)
             }
             du_Lieu.push(nhap)
-            Bieu_Do('Th_bieu_do', dsDT, du_Lieu)
+            var tachLop = lop.split("_")
+            Bieu_Do('Th_bieu_do', dsDT, du_Lieu, `từ đầu năm đến hiện tại`, tachLop[1])
 
         }
-
+        Th_showAll.onclick = () => {
+            Th_Loc_Lop.onchange();
+        }
         Th_Loc_Lop.onchange();
 
         var ds_Hs_Vang_Theo_Ngay = []
 
         Th_loc_ds.onclick = () => {
+            var lop = Th_Loc_Lop.value;
+            DS_HS_Theo_Lop = Danh_sach_HS_Theo_lop.filter(x => x.Lop.Ma_so == lop)
             console.log("ok")
             var ngay1 = Th_ngay.value.split("-");
             var ngay2 = Th_ngay2.value.split("-");
@@ -233,7 +240,15 @@
             du_Lieu.push(nhap)
             console.log(nhap.data)
             if (nhap.data.length > 0) {
-                Bieu_Do('Th_bieu_do', dsDT, du_Lieu)
+                var date1 = ngay1[2] + "/" + ngay1[1] + "/" + ngay1[0]
+                var date2 = ngay2[2] + "/" + ngay2[1] + "/" + ngay2[0]
+                var tachLop = lop.split("_")
+                if (Th_ngay.value == Th_ngay2.value) {
+                    Bieu_Do('Th_bieu_do', dsDT, du_Lieu, `ngày ${date1}`, tachLop[1])
+                } else {
+                    Bieu_Do('Th_bieu_do', dsDT, du_Lieu, `từ ngày ${date1} đến ${date2}`, tachLop[1])
+                }
+
             } else {
                 Th_bieu_do.innerHTML = `<div class="alert alert-success alert-dismissible fade show">
     <button type="button" class="close" data-dismiss="alert">&times;</button>

@@ -1,9 +1,9 @@
-function Bieu_Do(Th_bieu_do,dsDT,du_Lieu) {
+function Bieu_Do(Th_bieu_do, dsDT, du_Lieu, ngay, lop) {
     Highcharts.setOptions({
         lang: {
             numericSymbols: [` buổi `],
             //numericSymbolMagnitude: 1000,
-            decimalPoint: ',',  ///phân cách thập phân
+            decimalPoint: ',', ///phân cách thập phân
             thousandsSep: '.' ///hàng ngàn
         },
         chart: {
@@ -20,10 +20,10 @@ function Bieu_Do(Th_bieu_do,dsDT,du_Lieu) {
             type: 'column' // column, bar, line
         },
         title: {
-            text: 'Thống kê số học sinh nghỉ học'
+            text: `Thống kê số học sinh nghỉ học ${ngay}`
         },
         subtitle: {
-            text: 'Học sinh'
+            text: `Học sinh lớp ${lop}`
         },
         xAxis: {
             categories: dsDT
