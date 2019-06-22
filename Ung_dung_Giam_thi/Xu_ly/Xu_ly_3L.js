@@ -65,15 +65,19 @@ function Xuat_Danh_sach_Hoc_sinh(Danh_sach, Th_Cha) {
             Th_Cha.appendChild(The_hien)
             var flag = 0;
             The_hien.onclick = () => {
-                dsDaChon.forEach(x => {
-                    if (Hoc_sinh.Ma_so == x) {
-                        Th_ThongBao.innerHTML = `<div class="alert alert-warning alert-dismissible fade show">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Cảnh báo!</strong> Bạn không thể bỏ chọn học sinh đã được lưu
-  </div>`
-                        flag++;
-                    }
-                })
+                if (dsDaChon != undefined) {
+                    dsDaChon.forEach(x => {
+                        if (Hoc_sinh.Ma_so == x) {
+                            Th_ThongBao.innerHTML = `<div class="alert alert-warning alert-dismissible fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Cảnh báo!</strong> Bạn không thể bỏ chọn học sinh đã được lưu
+      </div>`
+                            flag++;
+                        }
+                    })
+                }
+
+
                 if (flag == 0) {
                     The_hien.classList.toggle("CHON")
 
@@ -101,7 +105,6 @@ function Xuat_Danh_sach_Hoc_sinh(Danh_sach, Th_Cha) {
 
                     Th_Gio_hang.innerHTML = `<u><span style="font-weight: bold;"> ${ds.length + ds_da_Chon.length} </span> học sinh</u>`
                 }
-
             }
         })
         // Th_Thong_bao.innerHTML = `Tổng số học sinh: ${Danh_sach.length}`;
