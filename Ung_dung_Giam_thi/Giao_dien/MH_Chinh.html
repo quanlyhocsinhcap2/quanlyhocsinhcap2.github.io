@@ -143,6 +143,64 @@
     <script src="../Xu_ly/Xu_ly_3L.js"></script>
     <script>
         var Danh_sach_Hoc_sinh = Doc_Danh_sach_Hoc_sinh().Danh_sach_Hoc_sinh;
+        var Nhat_ky_Diem_danh = Doc_Nhat_ky_Diem_danh();
+        var dateNow = new Date().toLocaleDateString().split("/")
+        var dateChuan = dateNow[1] + "-" + dateNow[0] + "-" + dateNow[2]
+        var dateTheoNhatKy = dateNow[1] + "_" + dateNow[0] + "_" + dateNow[2]
+        var dateShow = dateNow[1] + "/" + dateNow[0] + "/" + dateNow[2]
+            //console.log(dateChuan)
+        var duLieuDiemDanh;
+        Nhat_ky_Diem_danh.forEach(x => {
+            if (x.Ngay == dateTheoNhatKy) {
+                duLieuDiemDanh = x;
+            }
+        })
+        console.log(duLieuDiemDanh)
+
+        function taoNhatKyMoi() {
+            var duLieu = {
+                "Ngay": `${dateTheoNhatKy}`,
+                "Lop": ["6.1", "6.2"]
+            }
+
+            // var flag = 0;
+            // Nhat_ky_Diem_danh.forEach(x => {
+            //     if (x.Ngay == dateTheoNhatKy) {
+            //         flag++;
+            //     }
+            // })
+            // if (flag == 0) {
+            //Ghi_Nhat_ky_Diem_danh(duLieu)
+            //}
+        }
+
+        taoNhatKyMoi()
+
+        function kiemTraDiemDanh(lop) {
+            var flag = 0;
+            Nhat_ky_Diem_danh.forEach(x => {
+                if (x.Ngay == dateTheoNhatKy) {
+                    duLieuDiemDanh = x;
+                    //console.log(x)
+                    x.Lop.forEach(y => {
+                        if (y == lop) {
+                            flag++;
+                        }
+                    })
+
+                }
+            })
+            if (flag == 0) {
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+
+        //var checkLop = kiemTraDiemDanh("6.3")
+        //console.log("===>" + Nhat_ky_Diem_danh)
+
         var Tong_Hs_Vang = 0;
         if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
             var ds = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
@@ -232,12 +290,22 @@
             for (var i = 0; i < ans.length; i++) {
                 var number = ans[i].split(".");
                 var Ten_lop = ans[i].split("_");
-
+                var ktDiemDanh = kiemTraDiemDanh(Ten_lop[1])
+                console.log("Kq==>" + ktDiemDanh)
                 if (parseInt(number[1]) == 1) {
-                    text += `<option selected="selected" value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
-                } else {
+                    if (ktDiemDanh == true) {
+                        text += `<option selected="selected" value="${ans[i]}">Lớp ${Ten_lop[1]} - Đã điểm danh</option>`
+                    } else {
+                        text += `<option selected="selected" value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
+                    }
 
-                    text += `<option value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
+                } else {
+                    if (ktDiemDanh == true) {
+                        text += `<option value="${ans[i]}">Lớp ${Ten_lop[1]} - Đã điểm danh</option>`
+                    } else {
+                        text += `<option value="${ans[i]}">Lớp ${Ten_lop[1]}</option>`
+                    }
+
                 }
             }
             Th_Loc_Lop.innerHTML = text;
@@ -247,15 +315,26 @@
         var DS_HS_Theo_Lop;
 
         Th_Loc_Lop.onchange = () => {
+            var flag = 0;
             var lop = Th_Loc_Lop.value;
+            var layLop = lop.split("_");
             DS_HS_Theo_Lop = Danh_sach_HS_Theo_lop.filter(x => x.Lop.Ma_so == lop)
-            console.log(lop)
+            console.log("Lớp: " + layLop[1])
             Xuat_Danh_sach_Hoc_sinh(DS_HS_Theo_Lop, Th_Danh_sach)
-            Th_Tieu_de.innerHTML = `DANH SÁCH HỌC SINH <span class="text-danger"> ${DS_HS_Theo_Lop[0].Lop.Ten.toUpperCase()} </span> - TỔNG SỐ HỌC SINH : <span class="text-danger"> ${DS_HS_Theo_Lop.length} </span> - ĐIỂM DANH NGÀY <span class="text-danger"> ${new Date().toLocaleDateString()} </span>`
+            duLieuDiemDanh.Lop.forEach(x => {
+                if (x == layLop[1]) {
+                    flag++;
+                }
+            })
+            if (flag == 0) {
+                duLieuDiemDanh.Lop.push(layLop[1])
+                Ghi_Nhat_ky_Diem_danh(duLieuDiemDanh)
+            }
+            console.log(duLieuDiemDanh)
+            Th_Tieu_de.innerHTML = `DANH SÁCH HỌC SINH <span class="text-danger"> ${DS_HS_Theo_Lop[0].Lop.Ten.toUpperCase()} </span> - TỔNG SỐ HỌC SINH : <span class="text-danger"> ${DS_HS_Theo_Lop.length} </span> - ĐIỂM DANH NGÀY <span class="text-danger"> ${dateShow} </span>`
         }
 
         Th_Loc_Lop.onchange();
-
 
         Th_HS_nghi.onclick = () => {
             if (sessionStorage.getItem("Danh_sach_Chon") != undefined || sessionStorage.getItem("Danh_sach_Da_Chon") != undefined) {
@@ -294,36 +373,39 @@
         Th_Show.onclick = () => {
 
 
-                Danh_sach_Cap_nhat = []
-                Danh_sach_Chon_Cap_Nhat = []
-                Danh_sach_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
-                Danh_sach_Da_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Da_Chon"))
+            Danh_sach_Cap_nhat = []
+            Danh_sach_Chon_Cap_Nhat = []
+            Danh_sach_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Chon"))
+            Danh_sach_Da_Chon = JSON.parse(sessionStorage.getItem("Danh_sach_Da_Chon"))
 
-                if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
-                    Danh_sach_Chon.forEach(Hs => {
-                        var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
-                        Danh_sach_Cap_nhat.push(Hoc_sinh)
-                        Danh_sach_Chon_Cap_Nhat.push(Hoc_sinh)
-                    })
-                }
-                if (sessionStorage.getItem("Danh_sach_Da_Chon") != undefined) {
-                    Danh_sach_Da_Chon.forEach(Hs => {
-                        var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
-                        Danh_sach_Cap_nhat.push(Hoc_sinh)
-                    })
-                }
+            if (sessionStorage.getItem("Danh_sach_Chon") != undefined) {
+                Danh_sach_Chon.forEach(Hs => {
+                    var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
+                    Danh_sach_Cap_nhat.push(Hoc_sinh)
+                    Danh_sach_Chon_Cap_Nhat.push(Hoc_sinh)
+                })
+            }
+            if (sessionStorage.getItem("Danh_sach_Da_Chon") != undefined) {
+                Danh_sach_Da_Chon.forEach(Hs => {
+                    var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hs)
+                    Danh_sach_Cap_nhat.push(Hoc_sinh)
+                })
+            }
 
 
 
-                //console.log(Danh_sach_Cap_nhat)
-                Xuat_Danh_sach_Hs_Nghi(Danh_sach_Cap_nhat, Th_Danh_sach_Dien_thoai_Mua)
+            //console.log(Danh_sach_Cap_nhat)
+            Xuat_Danh_sach_Hs_Nghi(Danh_sach_Cap_nhat, Th_Danh_sach_Dien_thoai_Mua)
 
-                function Xuat_Danh_sach_Hs_Nghi(Danh_sach_Hs_Nghi, Th_Cha) {
-                    Th_Cha.innerHTML = ""
-                    var noi_dung_HTML = ``
-                    var noi_dung_HTML2 = ``
-                    Danh_sach_Hs_Nghi.forEach(Hoc_sinh_Nghi => {
-                        noi_dung_HTML += `
+
+        }
+
+        function Xuat_Danh_sach_Hs_Nghi(Danh_sach_Hs_Nghi, Th_Cha) {
+            Th_Cha.innerHTML = ""
+            var noi_dung_HTML = ``
+            var noi_dung_HTML2 = ``
+            Danh_sach_Hs_Nghi.forEach(Hoc_sinh_Nghi => {
+                noi_dung_HTML += `
                 <tr id="${Hoc_sinh_Nghi.Ma_so}-boChon">
                     <td>${Hoc_sinh_Nghi.Ma_so}</td>
                     <td scope="row">
@@ -333,19 +415,20 @@
                     <td>${Hoc_sinh_Nghi.Gioi_tinh}</td>
                     <td>${Hoc_sinh_Nghi.Lop.Ten}</td>
                 `
-                        var flag = 0;
-                        kq_Hs_Vang.forEach(y => {
-                            console.log("==>" + y)
-                            if (Hoc_sinh_Nghi.Ma_so == y) {
-                                noi_dung_HTML += `
+                var flag = 0;
+                console.log(kq_Hs_Vang)
+                kq_Hs_Vang.forEach(y => {
+                    console.log("==>" + y)
+                    if (Hoc_sinh_Nghi.Ma_so == y) {
+                        noi_dung_HTML += `
                               <td>${Hoc_sinh_Nghi.Danh_sach_Vang[Hoc_sinh_Nghi.Danh_sach_Vang.length - 1].Ly_do}</td>
                                 <td>Đã lưu</td>`
-                                flag++
-                                console.log(noi_dung_HTML2)
-                            }
-                        })
-                        if (flag == 0) {
-                            noi_dung_HTML += `
+                        flag++
+                        console.log(noi_dung_HTML2)
+                    }
+                })
+                if (flag == 0) {
+                    noi_dung_HTML += `
                             <td>
                         <select
               class="btn btn-sm btn-outline-danger" id="${Hoc_sinh_Nghi.Ma_so}">
@@ -356,23 +439,33 @@
             </select>
                     </td>
                             <td><button type="button" class="btn btn-primary" onClick="boChonHS('${Hoc_sinh_Nghi.Ma_so}-boChon');">Bỏ chọn</button></td>`
-                        }
-
-
-                    })
-                    console.log(kq_Hs_Vang)
-                    Th_Cha.innerHTML = noi_dung_HTML
-
                 }
-            }
-            // Th_delete.onclick=()=>{
-            //   var Ma_Hs =  Th_delete.value
-            //   sessionStorage.getItem("Danh_sach_Chon")
-            // }
+
+
+            })
+            console.log(kq_Hs_Vang)
+            Th_Cha.innerHTML = noi_dung_HTML
+
+        }
+        // Th_delete.onclick=()=>{
+        //   var Ma_Hs =  Th_delete.value
+        //   sessionStorage.getItem("Danh_sach_Chon")
+        // }
 
         function kiem_tra_Da_Chon() {
             var x = document.getElementsByClassName("CHON Da_Chon card m-1");
             console.log(x);
+        }
+        Th_Tim.onclick = () => {
+            var gtTim = Th_gtTim.value
+            console.log(gtTim)
+            var Danh_sach_Tim = DS_HS_Theo_Lop.filter(x => x.Ho_ten.toLowerCase().includes(gtTim.toLowerCase()))
+            Xuat_Danh_sach_Hoc_sinh(Danh_sach_Tim, Th_Danh_sach)
+        }
+        Th_gtTim.onchange = () => {
+            if (Th_gtTim.value == "") {
+                Xuat_Danh_sach_Hoc_sinh(DS_HS_Theo_Lop, Th_Danh_sach)
+            }
         }
 
         kiem_tra_Da_Chon();
@@ -388,6 +481,7 @@
                     "HS_Vang": HS_Vang
                 }
                 Ds_Dat.push(Hoc_sinh_Vang)
+                kq_Hs_Vang.push(`${Hoc_sinh.Ma_so}`)
             })
             if (Danh_sach_Chon_Cap_Nhat.length == 0) {
                 Th_ThongBao.innerHTML = `<div class="alert alert-warning alert-dismissible fade show">
@@ -398,6 +492,7 @@
             } else {
                 console.log("Hoc sinh chon cap nhat" + Danh_sach_Chon_Cap_Nhat.length)
                 var Kq = Ghi_Danh_sach_Vang(Ds_Dat)
+                console.log("hs==>" + kq_Hs_Vang)
                     //console.log("--->" + Kq)
                 var cap_nhat_ds = []
                 Danh_sach_Cap_nhat.forEach(Hoc_sinh => {
@@ -412,6 +507,7 @@
                     //Th_Gio_hang.innerHTML = 0;
             }
             Xuat_Danh_sach_Hoc_sinh(DS_HS_Theo_Lop, Th_Danh_sach)
+                //Xuat_Danh_sach_Hs_Nghi(Danh_sach_Cap_nhat, Th_Danh_sach_Dien_thoai_Mua)
             Th_dong.click()
         }
 
