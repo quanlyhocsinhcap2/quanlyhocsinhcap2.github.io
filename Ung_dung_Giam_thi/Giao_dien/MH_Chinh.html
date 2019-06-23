@@ -480,6 +480,9 @@
                     "Hoc_sinh": Hoc_sinh,
                     "HS_Vang": HS_Vang
                 }
+                var Hoc_sinh = Danh_sach_Hoc_sinh.find(x => x.Ma_so == Hoc_sinh.Ma_so)
+                Hoc_sinh.Danh_sach_Vang.push(HS_Vang)
+                console.log(Hoc_sinh.Danh_sach_Vang)
                 Ds_Dat.push(Hoc_sinh_Vang)
                 kq_Hs_Vang.push(`${Hoc_sinh.Ma_so}`)
             })
@@ -491,8 +494,8 @@
 
             } else {
                 console.log("Hoc sinh chon cap nhat" + Danh_sach_Chon_Cap_Nhat.length)
-                var Kq = Ghi_Danh_sach_Vang(Ds_Dat)
-                console.log("hs==>" + kq_Hs_Vang)
+                    //var Kq = Ghi_Danh_sach_Vang(Ds_Dat)
+                console.log(Danh_sach_Cap_nhat)
                     //console.log("--->" + Kq)
                 var cap_nhat_ds = []
                 Danh_sach_Cap_nhat.forEach(Hoc_sinh => {
