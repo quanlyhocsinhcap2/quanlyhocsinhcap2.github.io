@@ -148,34 +148,24 @@
         var dateChuan = dateNow[1] + "-" + dateNow[0] + "-" + dateNow[2]
         var dateTheoNhatKy = dateNow[1] + "_" + dateNow[0] + "_" + dateNow[2]
         var dateShow = dateNow[1] + "/" + dateNow[0] + "/" + dateNow[2]
-            //console.log(dateChuan)
+
         var duLieuDiemDanh;
+        var flag = 0;
+        var duLieu = {
+            "Ngay": `${dateTheoNhatKy}`,
+            "Lop": []
+        }
         Nhat_ky_Diem_danh.forEach(x => {
             if (x.Ngay == dateTheoNhatKy) {
                 duLieuDiemDanh = x;
-
+                flag++;
             }
         })
-        console.log(duLieuDiemDanh)
-
-        function taoNhatKyMoi() {
-            var duLieu = {
-                "Ngay": `${dateTheoNhatKy}`,
-                "Lop": []
-            }
-
-            var flag = 0;
-            Nhat_ky_Diem_danh.forEach(x => {
-                if (x.Ngay == dateTheoNhatKy) {
-                    flag++;
-                }
-            })
-            if (flag == 0) {
-                Ghi_Nhat_ky_Diem_danh(duLieu);
-            }
+        if (flag == 0) {
+            duLieuDiemDanh = duLieu;
+            Ghi_Nhat_ky_Diem_danh(duLieu);
         }
 
-        //taoNhatKyMoi()
 
         function kiemTraDiemDanh(lop) {
             var flag = 0;
